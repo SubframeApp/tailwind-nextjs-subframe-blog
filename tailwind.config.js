@@ -3,6 +3,7 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/subframe/**/*.{tsx,ts,js,jsx}",
   ],
   theme: {
     extend: {
@@ -13,5 +14,6 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
+  presets: [require("./src/subframe/tailwind.config.js")],
 };
