@@ -6,9 +6,10 @@ interface Metadata {
   title: string;
   description: string;
   date: string;
-  authorName: string;
+  author: string;
   authorImage: string;
-  image?: string;
+  image: string;
+  tag: "announcement" | "design" | "code";
 }
 
 interface BlogPost {
@@ -16,6 +17,13 @@ interface BlogPost {
   slug: string;
   content: string;
 }
+
+const DEFAULT_BLOG_METADATA: Partial<Metadata> = {
+  author: "Subframe Author",
+  authorImage: "/images/subframe-logo.png",
+  image: DEFAULT_METADATA.image,
+  tag: "announcement",
+};
 
 // NOTE: this should use gray-matter but it's deprecated
 // Taken from https://github.com/leerob/leerob.io
@@ -25,18 +33,16 @@ function parseFrontmatter(fileContent: string) {
   let frontMatterBlock = match![1];
   let content = fileContent.replace(frontmatterRegex, "").trim();
   let frontMatterLines = frontMatterBlock.trim().split("\n");
+  // the default metadata if for some reason
   let metadata: Partial<Metadata> = {
-    // TODO: allow more authors
-    authorName: "Subframe Author",
-    authorImage: "/images/subframe-logo.png",
-    image: DEFAULT_METADATA.image,
+    ...DEFAULT_BLOG_METADATA,
   };
 
   frontMatterLines.forEach((line) => {
     let [key, ...valueArr] = line.split(": ");
     let value = valueArr.join(": ").trim();
     value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value;
+    metadata[key.trim() as keyof Metadata] = value as any;
   });
 
   return { metadata: metadata as Metadata, content };

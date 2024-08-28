@@ -11,7 +11,7 @@ export const DEFAULT_METADATA: MetadataParams = {
   title: "Subframe – The best way to build UI, fast.",
   description:
     "Build stunning UI in minutes with a drag-and-drop visual editor, beautifully crafted components, and production-ready code. Optimized for React & TailwindCSS.",
-  image: `${process.env.NEXT_PUBLIC_SITE_URL}/images/social-media.png`,
+  image: makeMetadataUrl("/images/social-media.png"),
   url: process.env.NEXT_PUBLIC_SITE_URL || "",
 };
 

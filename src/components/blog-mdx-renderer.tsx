@@ -7,8 +7,6 @@ import { highlight } from "sugar-high";
 import styles from "./blog-mdx-renderer.module.scss";
 import { CopyToClipboardButton } from "../subframe/components/CopyToClipboardButton";
 import { twClassNames } from "@subframe/core";
-import subframeCollaborationImage from "../blog-images/subframe-collaboration.png";
-import chkkTweetImage from "../blog-images/chkk-tweet.png";
 
 /**
  * Image
@@ -17,23 +15,19 @@ function BaseImage({
   className,
   src,
   alt,
+  width = "0",
+  height = "0",
+  sizes = "100vw",
   ...otherProps
 }: React.ComponentProps<typeof Image>) {
-  switch (src) {
-    case "/images/blog/subframe-collaboration.png":
-      src = subframeCollaborationImage;
-      break;
-    case "/images/blog/chkk-tweet.png":
-      src = chkkTweetImage;
-      break;
-  }
-
   return (
     <Image
-      className={twClassNames("m-0", className)}
+      className={twClassNames("w-full h-auto m-0", className)}
       alt={alt}
       src={src}
-      quality={100}
+      width={width}
+      height={height}
+      sizes={sizes}
       {...otherProps}
     />
   );
