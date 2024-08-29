@@ -60,37 +60,6 @@ export default function BlogPage() {
                 />
               </Link>
             ))}
-          {allBlogs
-            .filter((post) => {
-              // filter to those whose date is in the past
-              return new Date(post.metadata.date) < new Date();
-            })
-            .sort((a, b) => {
-              if (new Date(a.metadata.date) > new Date(b.metadata.date)) {
-                return -1;
-              }
-              return 1;
-            })
-            .map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`}>
-                <BlogPostCard
-                  className="w-full"
-                  title={post.metadata.title}
-                  tag={post.metadata.tag}
-                  author={post.metadata.author}
-                  authorImage={post.metadata.authorImage}
-                  publishedDate={post.metadata.date}
-                  imageChildren={
-                    <Image
-                      src={post.metadata.image}
-                      alt={post.metadata.title}
-                      width={400}
-                      height={210}
-                    />
-                  }
-                />
-              </Link>
-            ))}
         </div>
       </div>
     </div>
