@@ -77,7 +77,7 @@ export default function Blog({ params }: { params: PostParams }) {
             url: `https://subframe.com/blog/${post.slug}`,
             author: {
               "@type": "Person",
-              name: post.metadata.authorName,
+              name: post.metadata.author,
             },
           }),
         }}
@@ -98,7 +98,7 @@ export default function Blog({ params }: { params: PostParams }) {
       <div className="flex items-center gap-1.5 mt-4">
         <Avatar size="x-small" image={post.metadata.authorImage} />
         <span className="text-body-bold text-subtext-color">
-          {post.metadata.authorName}
+          {post.metadata.author}
         </span>
 
         <Suspense fallback={<p className="h-5" />}>
